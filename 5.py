@@ -1,6 +1,8 @@
 import random
 import time
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 def print_m(M, tt):
     print(" время = " + str(tt) + " seconds.")
@@ -119,4 +121,38 @@ if det > diag:
 else:
     print((A+np.tril(A)-np.transpose(F))*K)
 
+fig, ax = plt.subplots()                                #matplotlib
+ax.set(xlabel='column number', ylabel='value')
+for i in range(N):
+    for j in range(N):
+        plt.bar(i, a[i][j])
+plt.show()
 
+fig, ax = plt.subplots()
+ax.set(xlabel='column number', ylabel='value')
+ax.grid()
+for j in range(N):
+    ax.plot([i for i in range(N)], a[j][::])
+plt.show()
+
+ax = plt.figure().add_subplot(projection='3d')
+ax.set(xlabel='x', ylabel='y', zlabel='z')
+for i in range(N):
+    plt.plot([j for j in range(N)], a[i][::], i)
+plt.show()
+
+
+sns.heatmap(data = F, annot = True)                 #seaborn
+plt.xlabel('column number')
+plt.ylabel('row number')
+plt.show()
+
+sns.boxplot(data = F)
+plt.xlabel('column number')
+plt.ylabel('value')
+plt.show()
+
+sns.lineplot(data = F)
+plt.xlabel('column number')
+plt.ylabel('value')
+plt.show()
